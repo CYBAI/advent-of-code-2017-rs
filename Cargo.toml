@@ -1,6 +1,11 @@
 [package]
+authors = ["CYBAI <cyb.ai.815@gmail.com>"]
 name = "advent-of-code-2017"
 version = "0.1.0"
-authors = ["CYBAI <cyb.ai.815@gmail.com>"]
 
 [dependencies]
+regex = "0.2.3"
+
+[lib]
+name = "aoc17"
+path = "src/lib.rs"
