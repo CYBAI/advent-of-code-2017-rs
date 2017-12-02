@@ -1,16 +1,19 @@
 extern crate aoc17;
 
-use std::io::stdin;
 use aoc17::day01::parse_sequence;
+use std::fs::File;
+use std::io::prelude::*;
 
 fn main() {
-  println!("Please input a number to parse:");
+  assert_eq!(0, parse_sequence("1234"));
+  assert_eq!(3, parse_sequence("1122"));
+  assert_eq!(4, parse_sequence("1111"));
+  assert_eq!(9, parse_sequence("9123456789"));
 
-  let mut input = String::new();
-  match stdin().read_line(&mut input) {
-    Ok(_n) => {
-      println!("{}", parse_sequence(input.as_str()));
-    },
-    Err(error) => println!("error: {}", error),
-  }
+  let mut f = File::open("./src/day01/input").expect("FILE NOT FOUND");
+
+  let mut contents = String::new();
+  f.read_to_string(&mut contents).expect("CONTENT READ ERROR");
+
+  println!("{}", parse_sequence(contents.as_str()));
 }
