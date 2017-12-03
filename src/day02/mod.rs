@@ -13,12 +13,12 @@ fn find_max(line: &str) -> i32 {
   line.split_whitespace()
       .map(|n| n.parse::<i32>().unwrap())
       .max()
-      .unwrap_or(0)
+      .unwrap()
 }
 
 fn find_min(line: &str) -> i32 {
   line.split_whitespace()
       .map(|n| n.parse::<i32>().unwrap())
       .min()
-      .unwrap_or(0)
+      .unwrap()
 }
