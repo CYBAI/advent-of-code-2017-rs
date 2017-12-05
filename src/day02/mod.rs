@@ -36,20 +36,14 @@ pub fn evenly_divisible_values(input: &str) -> i32 {
 }
 
 fn find_evenly_divisible(vec: Vec<i32>) -> i32 {
-  let mut map: HashMap<i32, HashSet<i32>> = HashMap::new();
+  let mut arr: Vec<i32> = Vec::new();
   let mut result = 0;
 
   for n in vec {
-    let f = factors(n);
-
-    for (k, v) in map.iter() {
-      if f.intersection(&v).count() >= cmp::min(v.len(), f.len()) {
-        result = if k.clone() > n {
-          k / n
-        } else {
-          n / k
-        };
-
+    for i in &arr {
+      let (max, min) = sorted_number(n, i.clone());
+      if max % min == 0 {
+        result = max / min;
         break;
       }
     }
@@ -58,25 +52,18 @@ fn find_evenly_divisible(vec: Vec<i32>) -> i32 {
       break;
     }
 
-    map.insert(n, f.clone());
+    arr.push(n);
   }
 
   result
 }
 
-fn factors(num: i32) -> HashSet<i32> {
-  let mut v: HashSet<i32> = HashSet::new();
-
-  let mid = (num / 2 as i32) + 1;
-
-  for i in 1..mid {
-    if num % i == 0 {
-      v.insert(num / i);
-      v.insert(i);
-    }
+fn sorted_number(a: i32, b: i32) -> (i32, i32) {
+  if a > b {
+    (a, b)
+  } else {
+    (b, a)
   }
-
-  v
 }
 
 fn parse_input(input: &str) -> Vec<Vec<i32>> {
