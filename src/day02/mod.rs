@@ -2,9 +2,6 @@
 //! Implementation of Day 2 in Advent of Code 2017
 //!
 
-use std::cmp;
-use std::collections::{HashMap, HashSet};
-
 pub fn checksum(input: &str) -> i32 {
   input.lines()
     .fold(0, |acc, line| {
